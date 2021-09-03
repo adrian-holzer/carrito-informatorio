@@ -178,10 +178,18 @@ public class CarritoController {
 
 
 
-        // lista de detalle es mayor a 0
+
 
 
         if (c!=null){
+
+            // evalúo si la lista de detalle es mayor a 0
+
+            if (c.getListaDetallesCarrito().size()==0){
+                return ResponseHandler.generateResponse("No hay productos en el carrito" , HttpStatus.BAD_REQUEST, null);
+
+            }
+
 
             if (c.getEstado()==Estado.EN_CURSO){
                 c.setEstado(Estado.CERRADO);
@@ -196,9 +204,9 @@ public class CarritoController {
                 o.setEstadoOrden(EstadoOrden.CONFIRMADO);
                 o.setCarrito(c);
 
+
                 System.out.println(o.getUsuario());
                 System.out.println(o.getTipo());
-                System.out.println(o.getCodigoOrden());
 
                 o.setTotal(0.00);
 
@@ -216,6 +224,7 @@ public class CarritoController {
                     OrdenProducto op = new OrdenProducto();
 
                     op.setOrden(o);
+
 
                     op.setProducto(dc.getProducto());
                     op.setCantidad(dc.getCantidad());

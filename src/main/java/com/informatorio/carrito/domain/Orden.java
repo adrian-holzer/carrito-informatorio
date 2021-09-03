@@ -22,9 +22,9 @@ public class Orden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero_orden", nullable = false, unique = true)
-    @NotBlank(message = "El numero de orden no puede ser vacío")
-    private String codigoOrden;
+//    @Column(name = "numero_orden", nullable = false, unique = true)
+//    @NotBlank(message = "El numero de orden no puede ser vacío")
+//    private String codigoOrden;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "carrito_id", referencedColumnName = "id")
@@ -74,13 +74,7 @@ public class Orden {
         this.id = id;
     }
 
-    public String getCodigoOrden() {
-        return codigoOrden;
-    }
 
-    public void setCodigoOrden(String codigoOrden) {
-        this.codigoOrden = codigoOrden;
-    }
 
     public Carrito getCarrito() {
         return carrito;

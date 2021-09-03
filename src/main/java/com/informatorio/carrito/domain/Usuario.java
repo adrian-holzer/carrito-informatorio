@@ -34,7 +34,6 @@ public class Usuario {
     private String email;
 
 
-    @NotNull()
     @Size(min = 8, max = 16)
     private String password;
 
@@ -95,7 +94,6 @@ public class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
 
 
 

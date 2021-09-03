@@ -15,6 +15,10 @@ public class UsuarioDto {
     private String direccion;
 
     private String ciudad;
+    private String provincia;
+    private String pais;
+
+
 
 
     public Long getId() {
@@ -62,7 +66,7 @@ public class UsuarioDto {
 
         this.setId(usuario.getId());
         this.setCiudad(usuario.getCiudad());
-        this.setNombre(usuario.getApellido());
+        this.setNombre(usuario.getNombre());
         this.setApellido(usuario.getApellido());
 
 

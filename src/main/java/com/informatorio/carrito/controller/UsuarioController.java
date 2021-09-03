@@ -77,9 +77,15 @@ public class UsuarioController {
     // Buscar Usuario por ID
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
+    public ResponseEntity<?> getUsuarioById(@PathVariable Long id) {
         Usuario usuario = this.usuarioService.findById(id);
-        return new ResponseEntity(usuario, HttpStatus.OK);
+
+        if (usuario!=null){
+            return new ResponseEntity(usuario, HttpStatus.OK);
+
+        }
+        return ResponseHandler.generateResponse("No existe un Usuario con id "+ id, HttpStatus.BAD_REQUEST,null);
+
     }
 
 
