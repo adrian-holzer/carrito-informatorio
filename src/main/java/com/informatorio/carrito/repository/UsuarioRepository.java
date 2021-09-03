@@ -25,4 +25,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     List<Usuario> findByfechaCreacionBetween(LocalDateTime fechaInicio ,LocalDateTime fechaFin);
 
 
+    Optional<Usuario> findByEmail(String email);
+    Optional<Usuario> findByCiudadIgnoreCase(String email);
+
+
 }

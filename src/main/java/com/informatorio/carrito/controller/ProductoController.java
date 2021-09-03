@@ -2,9 +2,6 @@ package com.informatorio.carrito.controller;
 
 import com.informatorio.carrito.Utils.ApiError;
 import com.informatorio.carrito.Utils.ResponseHandler;
-import com.informatorio.carrito.domain.Categoria;
-import com.informatorio.carrito.domain.DetalleCarrito;
-import com.informatorio.carrito.domain.Estado;
 import com.informatorio.carrito.domain.Producto;
 
 import com.informatorio.carrito.repository.ProductoRepository;
@@ -15,14 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/producto")

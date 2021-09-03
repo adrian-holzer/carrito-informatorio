@@ -1,14 +1,10 @@
 package com.informatorio.carrito.service;
 
 
-import com.informatorio.carrito.domain.Categoria;
 import com.informatorio.carrito.domain.Producto;
 import com.informatorio.carrito.repository.ProductoRepository;
-import com.informatorio.carrito.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ProductoService {

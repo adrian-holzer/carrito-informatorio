@@ -1,8 +1,10 @@
 package com.informatorio.carrito.domain;
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -51,6 +53,9 @@ public class Usuario {
     private String pais;
 
 
+    private Boolean activo;
+
+
     @CreationTimestamp
     private LocalDateTime fechaCreacion;
 
@@ -62,6 +67,7 @@ public class Usuario {
 
 
     public Usuario(){
+
 
 
     }
@@ -90,17 +96,12 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public LocalDateTime getFecha_creacion() {
-        return fechaCreacion;
+
+
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public void setFecha_creacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-
-
-
 
     public String getEmail() {
         return email;
@@ -111,8 +112,13 @@ public class Usuario {
     }
 
 
+    public Boolean getActivo() {
+        return activo;
+    }
 
-
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
 
     public String getCiudad() {
         return ciudad;

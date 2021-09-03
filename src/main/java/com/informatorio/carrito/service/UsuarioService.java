@@ -20,7 +20,6 @@ public class UsuarioService {
 
     public Usuario findById(Long id) {
 
-        System.out.println(this.usuarioRepository.findById(id).isPresent());
 
         if (this.usuarioRepository.findById(id).isPresent()) {
             Usuario usuario = this.usuarioRepository.findById(id).get();

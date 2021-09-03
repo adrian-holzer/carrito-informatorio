@@ -44,16 +44,26 @@ public class UsuarioController {
     }
 
 
-
-
-    // Operaciones de CRUD
-
-
-    // Listar todos los Usuarios
-
-
     @GetMapping("")
-    ResponseEntity<Usuario> allUsuarios() {
+    ResponseEntity<?> allUsuarios(@RequestParam(name = "fechaCreacion", required = false)
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaCreacion ,
+                                        @RequestParam(name = "ciudad", required = false) String ciudad ) {
+        if (Objects.nonNull(fechaCreacion)){
+
+
+
+            return new ResponseEntity<>(this.usuarioRepository.findByfechaCreacionAfter(fechaCreacion.atStartOfDay()), HttpStatus.OK);
+
+
+        }
+
+        if (Objects.nonNull(ciudad)){
+
+
+            return new ResponseEntity<>(this.usuarioRepository.findByCiudadIgnoreCase(ciudad), HttpStatus.OK);
+
+
+        }
 
         return new ResponseEntity(this.usuarioService.findAll(), HttpStatus.OK);
     }
@@ -128,6 +138,12 @@ public class UsuarioController {
 
         }
 
+        // Comprobar si ya existe un usuario con el email pasado
+
+        if (this.usuarioRepository.findByEmail(usuario.getEmail()).isPresent()){
+            return ResponseHandler.generateResponse("El email ya se encuentra en uso", HttpStatus.BAD_REQUEST, null);
+        }
+        usuario.setActivo(true);
         return new ResponseEntity<>(this.usuarioService.save(usuario), HttpStatus.CREATED);
     }
 
@@ -137,8 +153,14 @@ public class UsuarioController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editUsuario(@PathVariable Long id , @Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<?> editUsuario(@PathVariable Long id , @Valid @RequestBody Usuario usuario, Errors errors) {
 
+
+        if (errors.hasErrors()){
+
+            return new ResponseEntity<>(new ApiError(errors).getErrores(), HttpStatus.BAD_REQUEST);
+
+        }
         Usuario usuarioEdit = this.usuarioService.findById(id) ;
 
 
@@ -146,25 +168,60 @@ public class UsuarioController {
 
             usuarioEdit.setNombre(usuario.getNombre());
             usuarioEdit.setApellido(usuario.getApellido());
+            usuarioEdit.setCiudad(usuario.getCiudad());
+            usuarioEdit.setProvincia(usuario.getProvincia());
+            usuarioEdit.setPais(usuario.getPais());
+            usuarioEdit.setDireccion(usuario.getDireccion());
+
+
+
+            if (this.usuarioRepository.findByEmail(usuario.getEmail()).isPresent() &&
+            this.usuarioRepository.findByEmail(usuario.getEmail()).get().getId()!=usuarioEdit.getId()){
+
+
+                return ResponseHandler.generateResponse("El email ingresado ya se encuentra en uso", HttpStatus.BAD_REQUEST,null);
+            }
+
+            usuarioEdit.setEmail(usuario.getEmail());
+
             return new ResponseEntity<Usuario>(this.usuarioService.save(usuarioEdit), HttpStatus.CREATED);
 
         }
 
-        return new ResponseEntity<>("No se ha encotrado el usuario", HttpStatus.NOT_FOUND);
+        return ResponseHandler.generateResponse("No existe un Usuario con id "+ id, HttpStatus.BAD_REQUEST,null);
 
     }
 
 
 
+    // Desactivo
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable Long id) {
+
         Usuario usuario = this.usuarioService.findById(id) ;
+
         if (usuario!=null){
-            this.usuarioService.delete(id);
-            return new ResponseEntity<>( "Usuario Borrado exitosamente",  HttpStatus.OK);
+
+            if (usuario.getActivo()){
+
+
+                usuario.setActivo(false);
+                this.usuarioService.save(usuario);
+
+
+                return ResponseHandler.generateResponse("Usuario Desactivado correctamente",HttpStatus.OK, usuario) ;
+
+            }else{
+                return ResponseHandler.generateResponse("El usuario ya se encuentra inactivo",HttpStatus.BAD_REQUEST, usuario) ;
+
+            }
         }
-        return new ResponseEntity<>("No se ha encotrado el usuario que se desea borrar", HttpStatus.NOT_FOUND);
+
+        return ResponseHandler.generateResponse("No se ha encontrado el Usuario con id "+id,HttpStatus.BAD_REQUEST, null) ;
     }
+
+
+
 
 
 
