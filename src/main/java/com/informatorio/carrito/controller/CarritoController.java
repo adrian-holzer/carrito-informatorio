@@ -119,7 +119,7 @@ public class CarritoController {
 
         if (!dcExist && dc.getCantidad() == 0) {
 
-            return ResponseHandler.generateResponse(" En el carrito no existe el producto con código : " + p.getCodigoInventario() + " y no puede ser eliminado", HttpStatus.BAD_REQUEST, null);
+            return ResponseHandler.generateResponse(" En el carrito no existe el producto con ID : " + p.getId() + " y no puede ser eliminado", HttpStatus.BAD_REQUEST, null);
 
         }
 
@@ -133,16 +133,16 @@ public class CarritoController {
         if (result != null) {
 
             if (dc.getCantidad() > 0) {
-                return ResponseHandler.generateResponse("Se ha agregado al carrito con id " + id_carrito + " , el  producto " + p.getCodigoInventario(), HttpStatus.OK, result);
+                return ResponseHandler.generateResponse("Se ha agregado al carrito con id " + id_carrito + " , el  producto " + p.getId(), HttpStatus.OK, result);
 
 
             } else {
-                return ResponseHandler.generateResponse("Se ha eliminado del carrito con id " + id_carrito + " , un  producto con el código :  " + p.getCodigoInventario(), HttpStatus.OK, result);
+                return ResponseHandler.generateResponse("Se ha eliminado del carrito con id " + id_carrito + " , un  producto con el código :  " + p.getId(), HttpStatus.OK, result);
 
 
             }
         } else {
-            return ResponseHandler.generateResponse("Se ha eliminado el último producto con código : " + p.getCodigoInventario() + " que estaba cargado en el carrito ", HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("Se ha eliminado el último producto con código : " + p.getId() + " que estaba cargado en el carrito ", HttpStatus.OK, null);
         }
     }
 

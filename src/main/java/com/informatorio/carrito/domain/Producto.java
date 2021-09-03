@@ -20,13 +20,21 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="codigo_inventario", nullable=false, unique=true)
-    @NotBlank(message = "El Codigo de inventario no puede ser vacío")
-    private String codigoInventario;
 
+
+
+    @NotBlank()
     private String nombre;
 
+
+
+    @Size(min = 10, max = 200)
     private String descripcion;
+
+
+    @Size(min = 10, max = 100)
+    private String contenido;
+
 
 
     @Column(nullable=false)
@@ -35,10 +43,9 @@ public class Producto {
     private Double precioUnitario;
 
 
-    @NotNull(message = "La categoria es obligatoria")
-    private Categoria categoria;
 
 
+    @NotNull
     private Boolean publicado;
 
 
@@ -50,14 +57,12 @@ public class Producto {
 
 
 
-// Fecha de creacion y de modificacion
+// Fecha de creacion
 
 
     @CreationTimestamp
     private LocalDateTime fechaCreacion;
 
-    @UpdateTimestamp
-    private LocalDateTime fechaModificacion;
 
 
 
@@ -79,14 +84,6 @@ public class Producto {
     }
 
 
-
-    public String getCodigoInventario() {
-        return codigoInventario;
-    }
-
-    public void setCodigoInventario(String codigoInventario) {
-        this.codigoInventario = codigoInventario;
-    }
 
 
 
@@ -118,18 +115,18 @@ public class Producto {
         this.precioUnitario = precioUnitario;
     }
 
-
-
-    public Categoria getCategoria() {
-        return categoria;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
 
     // Fechas
+
+
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
@@ -138,16 +135,14 @@ public class Producto {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDateTime getFechaModificacion() {
-        return fechaModificacion;
-    }
 
-    public void setFechaModificacion(LocalDateTime fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
+
+
 
 
     // Detalles Carrito
+
+
 
     public List<DetalleCarrito> getListaDetallesCarrito() {
         return listaDetallesCarrito;
@@ -162,14 +157,17 @@ public class Producto {
         this.publicado = publicado;
     }
 
+
+
+
     @Override
     public String toString() {
         return "Producto{" +
-                "Codigo_Inventario=" + this.getCodigoInventario()+
+                "ID=" + this.getId()+
                 ", Nombre='" + this.getNombre() + '\'' +
-                ", Description='" + this.getDescripcion() + '\'' +
+                ", Descripcion='" + this.getDescripcion() + '\'' +
+                ", Contenido ='" + this.getContenido() + '\'' +
                 ", Precio Unitario='" + this.getPrecioUnitario() + '\'' +
-                ", Categoria='" + this.getCategoria() + '\'' +
                 '}';
     }
 }

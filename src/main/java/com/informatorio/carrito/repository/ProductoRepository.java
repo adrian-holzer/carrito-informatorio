@@ -16,16 +16,17 @@ import java.util.Optional;
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
 
-    List<Producto> findAllByCategoria(Categoria categoria);
+
     Iterable<Producto>  findByNombreIgnoreCaseContaining(String nombre);
     Iterable<Producto> findByOrderByPrecioUnitarioAsc();
-    Optional<Producto> findByCodigoInventario(String codigo_inventario);
-    List<Producto> findByNombreStartingWith(String prefix);
 
 
 
-    @Transactional
-    void removeByCodigoInventario(String codigo_inventario);
+    List<Producto> findByPublicadoTrue();
+    List<Producto> findByPublicadoFalse();
+
+
+
 
 
 

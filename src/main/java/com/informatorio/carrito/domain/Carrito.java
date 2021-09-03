@@ -4,6 +4,7 @@ package com.informatorio.carrito.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,11 +18,11 @@ public class Carrito {
     private Long id;
 
 
-
+    @NotBlank()
     private  Estado estado ;
 
 
-
+    @NotBlank()
     private String generadoPor;
 
     @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -30,16 +31,16 @@ public class Carrito {
     private Usuario usuario;
 
 
-    @Transient
-    private  Double total;
-
-
-
 
     // Fecha de creacion
 
     @CreationTimestamp
     private LocalDateTime fechaCreacion;
+
+
+
+    @Transient
+    private  Double total;
 
 
 
@@ -116,7 +117,11 @@ public class Carrito {
         if (this.getListaDetallesCarrito()!=null){
             for (DetalleCarrito dc: this.getListaDetallesCarrito()
             ) {
-                total += dc.getSubtotal();
+
+                if (dc.getProducto().getPublicado()){
+                    total += dc.getSubtotal();
+                }
+
             }
 
         }

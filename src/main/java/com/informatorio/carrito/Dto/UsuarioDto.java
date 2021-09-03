@@ -62,19 +62,18 @@ public class UsuarioDto {
 
         this.setId(usuario.getId());
         this.setCiudad(usuario.getCiudad());
-        this.setDireccion(usuario.getDireccion());
         this.setNombre(usuario.getApellido());
         this.setApellido(usuario.getApellido());
 
 
     }
 
-    @Override
-    public String toString() {
-        return  "Nombre : " +
-                this.getNombre() + " - Apellido : " +
-                this.getApellido() + " - Direccion : "
-                + this.getDireccion() + "Ciudad : "+ this.getCiudad();
-
-    }
+//    @Override
+//    public String toString() {
+//        return  "Nombre : " +
+//                this.getNombre() + " - Apellido : " +
+//                this.getApellido() + " - Direccion : "
+//                + this.getDireccion() + "Ciudad : "+ this.getCiudad();
+//
+//    }
 }

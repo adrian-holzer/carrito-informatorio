@@ -33,9 +33,8 @@ public class ProductoService {
     public Producto findById(Long id) {
 
         if (this.productoRepository.findById(id).isPresent()) {
-            Producto producto = this.productoRepository.findById(id).get();
 
-            return producto;
+            return this.productoRepository.findById(id).get();
 
         }
 
@@ -51,43 +50,13 @@ public class ProductoService {
 
 
 
-    public Producto findByCodigoInventario(String codigo) {
-
-
-        if (this.productoRepository.findByCodigoInventario(codigo).isPresent()) {
-            Producto producto = this.productoRepository.findByCodigoInventario(codigo).get();
-            return producto;
-
-        }
-
-        return null;
-
-    }
-
-
-    public void delete(Long id) {
-
-        this.productoRepository.deleteById(id);
-    }
-
-    public void removeByCodigoInventario(String codigoInventario) {
-
-        this.productoRepository.removeByCodigoInventario(codigoInventario);
-
-    }
 
 
 
-    public List<Producto> findByNombreStartingWith(String prefix){
-
-        return this.productoRepository.findByNombreStartingWith(prefix);
-    }
-
-    public List<Producto> findAllByCategoria(Categoria categoria){
 
 
-        return this.productoRepository.findAllByCategoria(categoria);
-    }
+
+
 
 
 }

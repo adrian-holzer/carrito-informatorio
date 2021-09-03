@@ -34,6 +34,8 @@ public class UsuarioController {
     @Autowired
     private  UsuarioRepository usuarioRepository;
 
+
+
     public UsuarioController() {
 
 
@@ -48,6 +50,8 @@ public class UsuarioController {
 
 
     // Listar todos los Usuarios
+
+
     @GetMapping("")
     ResponseEntity<Usuario> allUsuarios() {
 
@@ -107,6 +111,7 @@ public class UsuarioController {
         }else if(Objects.nonNull(nombre)|| Objects.nonNull(apellido) ||Objects.nonNull(direccion)){
 
             // Buscar por nombre
+
             return new ResponseEntity<>(this.usuarioRepository.findByNombreContainingAndApellidoContainingAndDireccionContaining(nombre,apellido,direccion), HttpStatus.OK);
     }
         return new  ResponseEntity<>(this.usuarioRepository.findAll(), HttpStatus.OK);

@@ -37,7 +37,8 @@ public class Usuario {
     private String password;
 
 
-
+    @NotBlank()
+    private String direccion;
 
     @NotBlank()
     private String ciudad;
@@ -137,6 +138,19 @@ public class Usuario {
         this.pais = pais;
     }
 
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+
+
+
+
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
@@ -166,6 +180,7 @@ public class Usuario {
         return "Usuario{" +
                 " Nombre =" + this.getNombre()+
                 ",Apellido ='" + this.getApellido() + '\'' +
+                ",Direccion ='" + this.getDireccion() + '\'' +
                 ",Ciudad ='" + this.getCiudad() + '\''+
                 ",Provincia ='" + this.getProvincia() + '\''+
                 ",Pais ='" + this.getPais() + '\''+
