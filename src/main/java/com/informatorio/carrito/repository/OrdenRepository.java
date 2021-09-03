@@ -1,5 +1,6 @@
 package com.informatorio.carrito.repository;
 
+import com.informatorio.carrito.domain.Carrito;
 import com.informatorio.carrito.domain.Orden;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,6 +10,8 @@ public interface OrdenRepository extends JpaRepository<Orden,Long> {
 
 
   Orden findByCodigoOrden(String codigoOrden);
+
+  Orden findByCarrito(Carrito carrito);
 
 
 

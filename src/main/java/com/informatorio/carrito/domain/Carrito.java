@@ -18,7 +18,6 @@ public class Carrito {
     private Long id;
 
 
-    @NotBlank()
     private  Estado estado ;
 
 
@@ -112,21 +111,21 @@ public class Carrito {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Double getTotal() {
+    public String getTotal() {
 
         if (this.getListaDetallesCarrito()!=null){
             for (DetalleCarrito dc: this.getListaDetallesCarrito()
             ) {
 
                 if (dc.getProducto().getPublicado()){
-                    total += dc.getSubtotal();
+                    total += dc.mostrarSubtotal();
                 }
 
             }
 
         }
 
-        return total;
+        return "$"+ total;
     }
 
 }

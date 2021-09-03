@@ -53,6 +53,19 @@ public class CarritoService {
     }
 
 
+    public  List<Carrito> findByUsuarioOrderByEstadoAsc(Usuario usuario){
+
+        List <Carrito> c = this.carritoRepository.findByUsuarioOrderByEstadoDesc(usuario);
+
+        if (c.size()!=0 && c!=null){
+            return this.carritoRepository.findByUsuarioOrderByEstadoDesc(usuario);
+
+        }
+        return  null;
+    }
+
+
+
 
     public Carrito save(Carrito carrito) {
 

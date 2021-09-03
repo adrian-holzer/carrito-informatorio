@@ -69,10 +69,16 @@ public class DetalleCarrito {
         this.cantidad = cantidad;
     }
 
-    public Double getSubtotal() {
-        this.subtotal= this.cantidad*this.getProducto().getPrecioUnitario();
+    public String getSubtotal() {
+        this.subtotal= mostrarSubtotal();
 
-        return this.subtotal ;
+        return "$"+this.subtotal ;
+    }
+
+    public Double mostrarSubtotal(){
+        this.subtotal= this.cantidad*this.getProducto().getPrecioUnitario();
+        return this.subtotal;
+
     }
 
 

@@ -133,7 +133,7 @@ public class CarritoController {
         if (result != null) {
 
             if (dc.getCantidad() > 0) {
-                return ResponseHandler.generateResponse("Se ha agregado al carrito con id " + id_carrito + " , el  producto " + p.getId(), HttpStatus.OK, result);
+                return ResponseHandler.generateResponse("Se ha agregado al carrito con id " + id_carrito + " , el  producto " + p.getId(), HttpStatus.OK,result);
 
 
             } else {
@@ -161,10 +161,25 @@ public class CarritoController {
         }
 
 
+        if (c.getUsuario().getActivo()==false){
+
+            return ResponseHandler.generateResponse("El Usuario del  Carrito con id : "+ id_carrito + " se encuentra inactivo, no puede cerrar la compra  " , HttpStatus.BAD_REQUEST, null);
+        }
+
+
+
+
+
+
         if (c.getUsuario().getId()!=id_usuario){
 
             return ResponseHandler.generateResponse("El Carrito con id : "+ id_carrito + " no pertenece a usuario con id  "+ id_usuario , HttpStatus.BAD_REQUEST, null);
         }
+
+
+
+        // lista de detalle es mayor a 0
+
 
         if (c!=null){
 
@@ -222,11 +237,11 @@ public class CarritoController {
 
 
                 return ResponseHandler.generateResponse("Se cerró el Carrito con id :  "+ id_carrito + " y " +
-                        "se generó la orden correspondiente "  , HttpStatus.OK, o);
+                        "se generó la orden correspondiente "  , HttpStatus.CREATED, o);
 
             }else
             {
-                return ResponseHandler.generateResponse("El Carrito con id :  "+ id_carrito + " ya se encuentra cerrado" , HttpStatus.BAD_REQUEST, c);
+                return ResponseHandler.generateResponse("El Carrito con id :  "+ id_carrito + " ya se encuentra cerrado" , HttpStatus.BAD_REQUEST, this.ordenRepository.findByCarrito(c));
 
             }
 

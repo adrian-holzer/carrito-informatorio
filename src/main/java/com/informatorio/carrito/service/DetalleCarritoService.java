@@ -79,10 +79,6 @@ public class DetalleCarritoService {
 
 
 
-    public void delete(Long id){
-
-        this.detalleCarritoRepository.deleteById(id);
-    }
 
 
 

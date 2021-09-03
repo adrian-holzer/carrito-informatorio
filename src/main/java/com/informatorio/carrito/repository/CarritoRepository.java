@@ -21,6 +21,9 @@ public interface CarritoRepository extends JpaRepository<Carrito, Long> {
 
     List<Carrito> findByUsuario(Usuario usuario);
 
+    List<Carrito> findByUsuarioOrderByEstadoDesc(Usuario usuario);
+
+
     Carrito findByUsuarioAndEstado(Usuario usuario, Estado estado);
 
 

@@ -9,6 +9,7 @@ import com.informatorio.carrito.repository.UsuarioRepository;
 import com.informatorio.carrito.service.CarritoService;
 import com.informatorio.carrito.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -242,9 +243,14 @@ public class UsuarioController {
 
         }else {
 
+            if (this.carritoService.findByUsuarioOrderByEstadoAsc(u)!=null) {
+                return ResponseHandler.generateResponse("Carritos del Usuario " + u.getNombre() + " " + u.getApellido(),HttpStatus.OK,this.carritoService.findByUsuarioOrderByEstadoAsc(u));
 
+            }
+            else {
+                return ResponseHandler.generateResponse("Carritos del Usuario " + u.getNombre() + " " + u.getApellido(),HttpStatus.OK,this.carritoService.findByUsuario(u));
 
-            return ResponseHandler.generateResponse("Carritos del Usuario " + u.getNombre() + " - " + u.getApellido(),HttpStatus.OK,this.carritoService.findByUsuario(u));
+            }
 
         }
 
@@ -254,18 +260,8 @@ public class UsuarioController {
 
 
 
-
-
-
-
-
-
-
-
-
-
     @PostMapping("/{id}/carrito")
-    ResponseEntity<?> addCarrito(@PathVariable Long id, @RequestBody Carrito ca ) {
+    ResponseEntity<?> addCarrito(@PathVariable Long id, @RequestBody @Valid  Carrito ca ) {
 
 
         Usuario u  = this.usuarioService.findById(id);
@@ -275,7 +271,13 @@ public class UsuarioController {
             return ResponseHandler.generateResponse("No existe el usuario con id " +id,HttpStatus.BAD_REQUEST,null);
 
         }
-        System.out.println(u);
+
+
+        if (u.getActivo()==null || !u.getActivo() ){
+            return ResponseHandler.generateResponse("El usuario con id " +id + " Se encuentra inactivo, no puede crear un nuevo carrito",HttpStatus.BAD_REQUEST,null);
+
+        }
+
 
         Set<Carrito> carritos = u.getListaCarritos();
 
