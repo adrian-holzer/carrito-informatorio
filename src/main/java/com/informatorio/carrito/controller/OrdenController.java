@@ -86,11 +86,32 @@ public class OrdenController {
 
             o.setObservacion(orden.getObservacion());
 
+            if (orden.getEstadoOrden()!=null && o.getEstadoOrden()==EstadoOrden.CONFIRMADO){
+
+                o.setEstadoOrden(EstadoOrden.CANCELADO);
+
+            }
+
             return new ResponseEntity<>(this.ordenRepository.save(o), HttpStatus.OK);
 
         }
 
         return ResponseHandler.generateResponse("No existe una orden con el id " + id, HttpStatus.BAD_REQUEST, null);
     }
+
+
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> eliminarOrden(@PathVariable  Long id ) {
+
+        Orden result = this.ordenService.delete(id);
+
+        if (result==null){
+            return ResponseHandler.generateResponse("No existe una orden con el id " + id, HttpStatus.BAD_REQUEST, null);
+        }
+
+        return ResponseHandler.generateResponse("Se ha eliminado la orden con  id " + id, HttpStatus.OK, result);
+    }
+
 
 }

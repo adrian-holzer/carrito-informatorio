@@ -3,7 +3,6 @@ package com.informatorio.carrito.controller;
 
 import com.informatorio.carrito.Utils.ResponseHandler;
 import com.informatorio.carrito.domain.*;
-import com.informatorio.carrito.repository.OrdenProductoRepository;
 import com.informatorio.carrito.repository.OrdenRepository;
 import com.informatorio.carrito.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -168,6 +167,8 @@ public class CarritoController {
                 return ResponseHandler.generateResponse("No hay productos en el carrito" , HttpStatus.BAD_REQUEST, null);
 
             }
+
+
 
 
             if (c.getEstado()==Estado.EN_CURSO){

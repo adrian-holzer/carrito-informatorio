@@ -55,5 +55,19 @@ public class OrdenService {
 
     }
 
+    public Orden delete(Long id){
+
+       Orden o =  this.findById(id);
+        if (this.findById(id) != null) {
+
+            this.ordenRepository.delete(o);
+
+          return o;
+
+        }else {
+            return null;
+        }
+    }
+
 
 }

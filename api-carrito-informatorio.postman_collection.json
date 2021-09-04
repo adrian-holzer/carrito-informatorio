@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Remera del Informatorio 1\",\r\n    \"descripcion\":\"Remera del informatorio color negro estampado xl\",\r\n    \"contenido\":\"Lleva tu remer de recuerdo !!\",\r\n    \"precioUnitario\":1000\r\n\r\n}",
+							"raw": "\r\n{\r\n    \"nombre\":\"Mochila del Informatorio\",\r\n    \"descripcion\":\"Mochila del Informatorio\",\r\n    \"contenido\":\"Lleva tu Mochila de recuerdo!!\",\r\n    \"precioUnitario\":1500\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n      \"nombre\": \"Buzo  del Informatorio 2\",\r\n        \"descripcion\": \"Este es el nuevo buzo del informatorio\",\r\n        \"contenido\": \"Lleva tu buzo de recuerdo !!\",\r\n        \"precioUnitario\": 2000.0,\r\n        \"publicado\": true\r\n    \r\n}",
+							"raw": "{\r\n    \"nombre\":\"Remera del Informatorio 1\",\r\n    \"descripcion\":\"Remera del informatorio color rojo estampado xl\",\r\n    \"contenido\":\"Lleva tu remera de recuerdo !!\",\r\n    \"precioUnitario\":1000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +71,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/producto/3",
+							"raw": "localhost:8080/api/producto/5",
 							"host": [
 								"localhost"
 							],
@@ -79,7 +79,7 @@
 							"path": [
 								"api",
 								"producto",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -117,7 +117,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/producto?nombre=eta",
+							"raw": "http://localhost:8080/api/producto?nombre=ila",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -130,7 +130,7 @@
 							"query": [
 								{
 									"key": "nombre",
-									"value": "eta"
+									"value": "ila"
 								}
 							]
 						}
@@ -143,7 +143,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/producto/3",
+							"raw": "http://localhost:8080/api/producto/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -152,7 +152,7 @@
 							"path": [
 								"api",
 								"producto",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -164,7 +164,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/producto/30",
+							"raw": "http://localhost:8080/api/producto/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -173,7 +173,7 @@
 							"path": [
 								"api",
 								"producto",
-								"30"
+								"5"
 							]
 						}
 					},
@@ -236,7 +236,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/usuario?ciudad=Resistencia",
+							"raw": "http://localhost:8080/api/usuario?ciudad=Goya",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -249,7 +249,7 @@
 							"query": [
 								{
 									"key": "ciudad",
-									"value": "Resistencia"
+									"value": "Goya"
 								}
 							]
 						}
@@ -262,7 +262,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/usuario?fechaCreacion=2021-09-03",
+							"raw": "http://localhost:8080/api/usuario?fechaCreacion=2021-08-20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -275,7 +275,7 @@
 							"query": [
 								{
 									"key": "fechaCreacion",
-									"value": "2021-09-03"
+									"value": "2021-08-20"
 								}
 							]
 						}
@@ -317,7 +317,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"Carolina Tatiana\",\r\n    \"apellido\":\"Romero Gonzalez\",\r\n    \"direccion\":\"Sarmiento 123\",\r\n    \"ciudad\":\"Resistencia\",\r\n    \"provincia\":\"Chaco\",\r\n    \"pais\":\"Argentina\",\r\n    \"email\":\"car.r@email.com\",\r\n    \"activo\":true\r\n}",
+							"raw": "\r\n\r\n{\r\n    \"nombre\":\"Lucas\",\r\n    \"apellido\":\"Gomez Romero\",\r\n    \"direccion\":\"Lavalle 400\",\r\n    \"ciudad\":\"Resistencia\",\r\n    \"provincia\":\"Chaco\",\r\n    \"pais\":\"Argentina\",\r\n    \"email\":\"lg@email.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -325,7 +325,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/usuario/2",
+							"raw": "localhost:8080/api/usuario/7",
 							"host": [
 								"localhost"
 							],
@@ -333,7 +333,7 @@
 							"path": [
 								"api",
 								"usuario",
-								"2"
+								"7"
 							]
 						}
 					},
@@ -345,7 +345,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/usuario/2",
+							"raw": "localhost:8080/api/usuario/5",
 							"host": [
 								"localhost"
 							],
@@ -353,7 +353,7 @@
 							"path": [
 								"api",
 								"usuario",
-								"2"
+								"5"
 							]
 						}
 					},
@@ -381,7 +381,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cantidad\":3\r\n\r\n\r\n\r\n}",
+							"raw": "{\r\n    \"cantidad\":2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -389,7 +389,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/usuario/3/carrito/3/producto/4",
+							"raw": "localhost:8080/api/usuario/6/carrito/6/producto/7",
 							"host": [
 								"localhost"
 							],
@@ -397,11 +397,11 @@
 							"path": [
 								"api",
 								"usuario",
-								"3",
+								"6",
 								"carrito",
-								"3",
+								"6",
 								"producto",
-								"4"
+								"7"
 							]
 						}
 					},
@@ -446,7 +446,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"generadoPor\":\"Movil\"\r\n}",
+							"raw": "{\r\n    \"generadoPor\":\"Movil\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -454,7 +454,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/usuario/3/carrito",
+							"raw": "localhost:8080/api/usuario/6/carrito",
 							"host": [
 								"localhost"
 							],
@@ -462,7 +462,7 @@
 							"path": [
 								"api",
 								"usuario",
-								"3",
+								"6",
 								"carrito"
 							]
 						}
@@ -475,7 +475,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/usuario/3/carrito",
+							"raw": "localhost:8080/api/usuario/6/carrito",
 							"host": [
 								"localhost"
 							],
@@ -483,7 +483,7 @@
 							"path": [
 								"api",
 								"usuario",
-								"3",
+								"6",
 								"carrito"
 							]
 						}
@@ -552,7 +552,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"observacion\":\"nueva\"\r\n}",
+							"raw": "{\r\n    \"observacion\":\"nueva observacion 3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -560,7 +560,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/orden/33",
+							"raw": "localhost:8080/api/orden/34",
 							"host": [
 								"localhost"
 							],
@@ -568,7 +568,7 @@
 							"path": [
 								"api",
 								"orden",
-								"33"
+								"34"
 							]
 						}
 					},
@@ -588,6 +588,26 @@
 							"path": [
 								"api",
 								"orden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Orden",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orden/36",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orden",
+								"36"
 							]
 						}
 					},
