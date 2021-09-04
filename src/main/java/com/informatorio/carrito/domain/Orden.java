@@ -1,5 +1,6 @@
 package com.informatorio.carrito.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.informatorio.carrito.Dto.UsuarioDto;
 import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 import java.util.List;
@@ -22,26 +24,27 @@ public class Orden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "numero_orden", nullable = false, unique = true)
-//    @NotBlank(message = "El numero de orden no puede ser vacío")
-//    private String codigoOrden;
+
+
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "carrito_id", referencedColumnName = "id")
+    @JsonIgnore
     private Carrito carrito;
 
-
-//
-//    @OneToMany(mappedBy = "orden", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    private Set<OrdenProducto> ordenProductoList;
 
 
     @Transient
     private UsuarioDto usuario;
 
+    @Size(max = 200)
+    private String observacion;
 
-    @Column(name = "tipo", nullable = false)
-    private Tipo tipo;
+
+    @OneToMany(mappedBy = "orden" ,  fetch = FetchType.EAGER , cascade = CascadeType.ALL )
+    private Set<OrdenProducto> listadoOrdenProducto;
+
+
 
     @Column(name = "estadoOrden", nullable = false)
     private EstadoOrden estadoOrden;
@@ -94,17 +97,14 @@ public class Orden {
         return usuario;
     }
 
+
     public void setUsuario(UsuarioDto usuario) {
         this.usuario = usuario;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
+
+
 
     public EstadoOrden getEstadoOrden() {
         return estadoOrden;
@@ -114,6 +114,14 @@ public class Orden {
         this.estadoOrden = estadoOrden;
     }
 
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
@@ -121,6 +129,8 @@ public class Orden {
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+
 
     public LocalDateTime getFechaModificacion() {
         return fechaModificacion;
@@ -133,11 +143,23 @@ public class Orden {
 
 
 
-    public Double getTotal() {
 
+    public Set<OrdenProducto> getListadoOrdenProducto() {
+        return listadoOrdenProducto;
+    }
 
+    public void setListadoOrdenProducto(Set<OrdenProducto> listadoOrdenProducto) {
+        this.listadoOrdenProducto = listadoOrdenProducto;
+    }
+
+    public Double montoTotal() {
         return total;
     }
+
+    public String getTotal() {
+        return "$"+total;
+    }
+
 
     public void setTotal(Double total) {
         this.total = total;

@@ -5,6 +5,9 @@ import com.informatorio.carrito.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;
@@ -40,10 +43,16 @@ public class UsuarioService {
     }
 
 
+   public List<Usuario> findByCiudadIgnoreCase(String ciudad){
 
+        return this.usuarioRepository.findAllByCiudadIgnoreCase(ciudad);
+   }
 
-    public void delete(Long id) {
+    public List<Usuario> findByfechaCreacionAfter(LocalDateTime fechaCreacion){
 
-        this.usuarioRepository.deleteById(id);
+        return this.usuarioRepository.findByfechaCreacionAfter(fechaCreacion);
     }
+
+
+
 }

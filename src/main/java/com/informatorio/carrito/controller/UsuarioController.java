@@ -46,23 +46,20 @@ public class UsuarioController {
 
 
     @GetMapping("")
-    ResponseEntity<?> allUsuarios(@RequestParam(name = "fechaCreacion", required = false)
-                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaCreacion ,
+    ResponseEntity<?> allUsuarios( @RequestParam(name = "fechaCreacion", required = false)
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fechaCreacion ,
                                         @RequestParam(name = "ciudad", required = false) String ciudad ) {
-        if (Objects.nonNull(fechaCreacion)){
 
+        if (Objects.nonNull(fechaCreacion) ){
 
-
-            return new ResponseEntity<>(this.usuarioRepository.findByfechaCreacionAfter(fechaCreacion.atStartOfDay()), HttpStatus.OK);
+            return new ResponseEntity<>(this.usuarioService.findByfechaCreacionAfter(fechaCreacion.atStartOfDay()), HttpStatus.OK);
 
 
         }
 
         if (Objects.nonNull(ciudad)){
 
-
-            return new ResponseEntity<>(this.usuarioRepository.findByCiudadIgnoreCase(ciudad), HttpStatus.OK);
-
+            return new ResponseEntity<>(this.usuarioService.findByCiudadIgnoreCase(ciudad), HttpStatus.OK);
 
         }
 
@@ -182,6 +179,11 @@ public class UsuarioController {
 
 
 
+            if (usuario.getActivo()!=null && usuario.getActivo()!=usuarioEdit.getActivo() && usuarioEdit.getActivo()==false){
+                usuarioEdit.setActivo(true);
+            }
+
+
             if (this.usuarioRepository.findByEmail(usuario.getEmail()).isPresent() &&
             this.usuarioRepository.findByEmail(usuario.getEmail()).get().getId()!=usuarioEdit.getId()){
 
@@ -201,7 +203,8 @@ public class UsuarioController {
 
 
 
-    // Desactivo
+    // Desactivo el Usuario
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable Long id) {
 
@@ -255,13 +258,8 @@ public class UsuarioController {
             }
             else {
                 return ResponseHandler.generateResponse("Carritos del Usuario " + u.getNombre() + " " + u.getApellido(),HttpStatus.OK,this.carritoService.findByUsuario(u));
-
             }
-
         }
-
-
-
     }
 
 

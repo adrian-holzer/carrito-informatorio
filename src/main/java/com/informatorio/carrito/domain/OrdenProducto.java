@@ -26,7 +26,10 @@ public class OrdenProducto {
 
     @ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name="orden_id", nullable=false)
+    @JsonIgnore
     private Orden orden;
+
+
 
     @Column(nullable=false)
     private Integer cantidad;

@@ -5,10 +5,7 @@ import com.informatorio.carrito.Utils.ResponseHandler;
 import com.informatorio.carrito.domain.*;
 import com.informatorio.carrito.repository.OrdenProductoRepository;
 import com.informatorio.carrito.repository.OrdenRepository;
-import com.informatorio.carrito.service.CarritoService;
-import com.informatorio.carrito.service.DetalleCarritoService;
-import com.informatorio.carrito.service.ProductoService;
-import com.informatorio.carrito.service.UsuarioService;
+import com.informatorio.carrito.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,36 +23,20 @@ public class CarritoController {
     @Autowired
     private UsuarioService usuarioService;
 
-
-
-
-
-
+    @Autowired
+    private OrdenService ordenService;
 
     @Autowired
     private OrdenRepository ordenRepository;
 
 
     @Autowired
-    private OrdenProductoRepository ordenProductoRepository;
-
-
-
-
-
-
-
-
+    private  ProductoService productoService;
 
 
 
     @Autowired
-    ProductoService productoService;
-
-
-
-    @Autowired
-    DetalleCarritoService detalleCarritoService;
+    private  DetalleCarritoService detalleCarritoService;
 
 
 
@@ -69,8 +50,6 @@ public class CarritoController {
 
     @PutMapping("/usuario/{id_usuario}/carrito/{id_carrito}/producto/{id_producto}")
     ResponseEntity<?> modificarCarrito(@PathVariable Long id_carrito, @PathVariable Long id_producto,@PathVariable Long id_usuario, @RequestBody DetalleCarrito dc) {
-
-
 
 
 
@@ -147,7 +126,7 @@ public class CarritoController {
     }
 
 
-    @PutMapping("/usuario/{id_usuario}/carrito/{id_carrito}")
+    @PostMapping("/usuario/{id_usuario}/carrito/{id_carrito}/orden")
     ResponseEntity<?>   cerrarCarrito(@PathVariable Long id_carrito,@PathVariable Long id_usuario, @RequestBody Orden o ) {
 
         //  Se cambia el estado a Cerrado y se genera una Orden de Compra
@@ -205,14 +184,13 @@ public class CarritoController {
                 o.setCarrito(c);
 
 
-                System.out.println(o.getUsuario());
-                System.out.println(o.getTipo());
+                System.out.println(o.getUsuario().getNombre());
 
                 o.setTotal(0.00);
 
 
                 // Al crearla la guardo en la variable o para poder asignarlo a la Orden Producto
-                o = this.ordenRepository.save(o);
+                o = this.ordenService.save(o);
 
                 for (DetalleCarrito dc : o.getCarrito().getListaDetallesCarrito()
                 ) {
@@ -232,21 +210,21 @@ public class CarritoController {
 
 
 
-                    o.setTotal(o.getTotal()+op.getSubtotal());
+                    o.setTotal(o.montoTotal()+op.getSubtotal());
 
 
 
-                    this.ordenProductoRepository.save(op);
+                    this.ordenService.saveOrdenProducto(op);
 
 
                 }
 
 
-                this.ordenRepository.save(o);
+                this.ordenService.save(o);
 
 
-                return ResponseHandler.generateResponse("Se cerró el Carrito con id :  "+ id_carrito + " y " +
-                        "se generó la orden correspondiente "  , HttpStatus.CREATED, o);
+                return ResponseHandler.generateResponse("Se cerró el Carrito con id :  "+ id_carrito + " y " + "se " +
+                        "generó la orden correspondiente "  , HttpStatus.CREATED, this.ordenService.findByCarrito(c) );
 
             }else
             {

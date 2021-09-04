@@ -91,6 +91,7 @@ public class ProductoController {
     @PostMapping("")
     public ResponseEntity<?> addProducto(@Valid @RequestBody Producto producto, Errors errors) {
 
+        producto.setPublicado(true);
         if (errors.hasErrors()){
             return new ResponseEntity<>(new ApiError(errors).getErrores(), HttpStatus.BAD_REQUEST);
 

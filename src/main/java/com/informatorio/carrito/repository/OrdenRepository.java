@@ -24,4 +24,6 @@ public interface OrdenRepository extends JpaRepository<Orden,Long> {
   @Query(value = "SELECT o.* FROM orden o INNER JOIN Carrito c INNER JOIN \n" + " Usuario u on u.id=c.usuario_id  and c.id=o.carrito_id  where u.id =:idUsuario" , nativeQuery = true)
   List<Orden> findAllByUsuario(@Param("idUsuario") Long idUsuario);
 
+
+
 }

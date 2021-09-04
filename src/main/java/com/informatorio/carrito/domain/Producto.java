@@ -70,6 +70,7 @@ public class Producto {
 
     public  Producto(){
 
+        this.setPublicado(true);
     }
 
 

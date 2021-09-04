@@ -2,6 +2,8 @@ package com.informatorio.carrito.Dto;
 
 import com.informatorio.carrito.domain.Usuario;
 
+import java.time.LocalDateTime;
+
 public class UsuarioDto {
 
 
@@ -17,6 +19,7 @@ public class UsuarioDto {
     private String ciudad;
     private String provincia;
     private String pais;
+
 
 
 
@@ -62,22 +65,35 @@ public class UsuarioDto {
     }
 
 
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+
+
     public void mapearUsuarioToUsuarioDto(Usuario usuario){
 
         this.setId(usuario.getId());
-        this.setCiudad(usuario.getCiudad());
         this.setNombre(usuario.getNombre());
         this.setApellido(usuario.getApellido());
-
+        this.setDireccion(usuario.getDireccion());
+        this.setCiudad(usuario.getCiudad());
+        this.setProvincia(usuario.getProvincia());
+        this.setPais(usuario.getPais());
 
     }
 
-//    @Override
-//    public String toString() {
-//        return  "Nombre : " +
-//                this.getNombre() + " - Apellido : " +
-//                this.getApellido() + " - Direccion : "
-//                + this.getDireccion() + "Ciudad : "+ this.getCiudad();
-//
-//    }
+
 }

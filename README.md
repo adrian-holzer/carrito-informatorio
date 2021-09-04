@@ -1,4 +1,5 @@
-"# carrito-spring-rest" 
+"# carrito-informatorio"
 
 Colleccion de Request
-https://www.getpostman.com/collections/4720d232315ee6edaf90
+
+https://www.getpostman.com/collections/507d13495fa02a5ad1bb

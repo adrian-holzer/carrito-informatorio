@@ -1,0 +1,599 @@
+{
+	"info": {
+		"_postman_id": "24a345a6-5a29-4e19-afa7-12ca94e056ba",
+		"name": "api-carrito-informatorio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Obtener todos los Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Nuevo Producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Remera del Informatorio 1\",\r\n    \"descripcion\":\"Remera del informatorio color negro estampado xl\",\r\n    \"contenido\":\"Lleva tu remer de recuerdo !!\",\r\n    \"precioUnitario\":1000\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Producto por Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Buzo  del Informatorio 2\",\r\n        \"descripcion\": \"Este es el nuevo buzo del informatorio\",\r\n        \"contenido\": \"Lleva tu buzo de recuerdo !!\",\r\n        \"precioUnitario\": 2000.0,\r\n        \"publicado\": true\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/producto/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar todos los productos Publicados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto?publicado=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							],
+							"query": [
+								{
+									"key": "publicado",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar productos que contengan una palabra en el nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto?nombre=eta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "eta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Producto por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto/30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar todos los productos No Publicados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto?publicado=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							],
+							"query": [
+								{
+									"key": "publicado",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Mostrar Todos los Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Todos los Usuarios De una Ciudad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuario?ciudad=Resistencia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "ciudad",
+									"value": "Resistencia"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Todos los Usuarios creados luego de una fecha dada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuario?fechaCreacion=2021-09-03",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "fechaCreacion",
+									"value": "2021-09-03"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Nuevo Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carolina\",\r\n    \"apellido\":\"Romero\",\r\n    \"direccion\":\"Av Castelli 200\",\r\n    \"ciudad\":\"Goya\",\r\n    \"provincia\":\"Chaco\",\r\n    \"pais\":\"Argentina\",\r\n    \"email\":\"n@email.com\",\r\n    \"password\":\"mdfdsffsdyworD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carolina Tatiana\",\r\n    \"apellido\":\"Romero Gonzalez\",\r\n    \"direccion\":\"Sarmiento 123\",\r\n    \"ciudad\":\"Resistencia\",\r\n    \"provincia\":\"Chaco\",\r\n    \"pais\":\"Argentina\",\r\n    \"email\":\"car.r@email.com\",\r\n    \"activo\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "Modificar Carrito (Agregado y Eliminacion de Productos)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cantidad\":3\r\n\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/3/carrito/3/producto/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"3",
+								"carrito",
+								"3",
+								"producto",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cerrar-Carrito -> Generar Orden",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"observacion\":\"Esta es una observacion nueva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/3/carrito/4/orden",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"3",
+								"carrito",
+								"4",
+								"orden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Carrito Nuevo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"generadoPor\":\"Movil\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuario/3/carrito",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"3",
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de Carritos de un Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuario/3/carrito",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario",
+								"3",
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orden",
+			"item": [
+				{
+					"name": "Mostrar Orden por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orden?id=34",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orden"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar todas las Ordenes de un Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orden?usuarioId=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orden"
+							],
+							"query": [
+								{
+									"key": "usuarioId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Orden",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"observacion\":\"nueva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orden/33",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orden",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Todas las Ordenes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orden",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orden"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
